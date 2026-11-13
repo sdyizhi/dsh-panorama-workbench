@@ -1,0 +1,11 @@
+- insert:
+    - id: panorama-workbench
+      name: 'dsh-panorama-workbench'
+      # connection = 静态声明（P4 实测：动态 ctx.inject(['connection']) 在 HMR 重挂的同步
+      # 阶段有竞态 → ctx.get 撞 cordis 属性守卫 "cannot get property without inject"）
+      # tools = R2 工具注册所需（对齐已装插件 picgo 的直接注册模式）
+      inject: ['webServer', 'workspaceRegistry', 'sessionPersistence', 'sessionQuery', 'connection', 'tools']
+      config:
+        dataSource: 'auto'            # auto | native | strict（规格 §2.1，已锁定 auto）
+        includeSubagents: false
+        summaryRowLimit: 50

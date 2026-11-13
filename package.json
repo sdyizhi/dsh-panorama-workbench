@@ -1,0 +1,70 @@
+{
+  "name": "dsh-panorama-workbench",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Cross-workspace session panorama for DeepSeek Harness: grouped stats, bounded summaries, reuse signals, a task state chain, and an independent review pipeline.",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "bundle",
+    "workspace",
+    "session",
+    "panorama",
+    "observability",
+    "agent-tools"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sdyizhi/dsh-panorama-workbench.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sdyizhi/dsh-panorama-workbench/issues"
+  },
+  "homepage": "https://github.com/sdyizhi/dsh-panorama-workbench#readme",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "aggregator.js",
+    "summary.js",
+    "memory-bridge.js",
+    "panorama-db.js",
+    "task-tool.js",
+    "audit-tool.js",
+    "audit-core.js",
+    "deliver-tool.js",
+    "signals.js",
+    "signals-tool.js",
+    "watch-tool.js",
+    "reconcile.js",
+    "cordis.patch.yml",
+    "LICENSE",
+    "README.md",
+    "locale/*.json",
+    "locale/meta.detail",
+    "icon.svg"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh": "0.2.2-rc.1"
+  }
+}
