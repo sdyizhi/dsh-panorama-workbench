@@ -57,27 +57,26 @@ git push -u origin main
 > `package.json` 的 `repository` / `bugs` / `homepage` 已指向该仓库。
 > `.gitignore` 已排除 `node_modules/` 与 `*.tgz`。
 
-### 2.2 发布到 npm
+### 2.2 发布（GitHub 为主，npm 可选）
 
+**GitHub（推荐，无需 npm 账号）**：推完代码即发布，用户通过 git URL 安装。
+
+**npm（可选）**：
 ```bash
-npm login                      # 若未登录
-npm publish --access public    #  unscoped 包必须显式 --access public
-```
-
-发布后验证：
-
-```bash
-npm view dsh-panorama-workbench versions
-npm pack --dry-run             # 复核
+npm login && npm publish --access public
+npm view dsh-panorama-workbench versions   # 验证
 ```
 
 ### 2.3 别人怎么装
 
 ```bash
-# 方式一：DSH 插件管理（Web 侧边栏 → Plugins，或 plugin_manager 工具）
-install_bundle: dsh-panorama-workbench
+# 方式一（推荐）：Git URL
+dsh plugin --profile <profile> add git+https://github.com/sdyizhi/dsh-panorama-workbench.git
 
-# 方式二：CLI
+# 方式二：tarball（从 GitHub Release 下载）
+dsh plugin --profile <profile> add /path/to/dsh-panorama-workbench-1.0.0.tgz
+
+# 方式三：npm（需先发布）
 dsh plugin --profile <profile> add dsh-panorama-workbench
 
 # 安装后必须重启桌面版（Host 代码只在启动时加载）
@@ -87,8 +86,8 @@ dsh plugin --profile <profile> add dsh-panorama-workbench
 
 ## 3. 发布后检查清单
 
-- [ ] `npm view dsh-panorama-workbench` 能看到 1.0.0
-- [ ] 在**另一个干净 profile**（或卸载后）安装一次，确认能挂载、面板可开
+- [ ] GitHub 仓库 `sdyizhi/dsh-panorama-workbench` 的 `main` 分支有 25 个文件
+- [ ] 在**另一个干净 profile** 安装一次，确认能挂载、面板可开
 - [ ] 面板诊断卡：`传输 / 派生库 / 数据源 / 各工具 registered / 代码戳`
 - [ ] 卸载：`dsh plugin --profile <name> remove dsh-panorama-workbench`
       + 可选 `rm -rf "$DSH_HOME/panorama"`

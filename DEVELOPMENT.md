@@ -162,4 +162,18 @@ node ../panorama-spec/compare-with-panorama.mjs --script ../panorama-spec/report
 - [x] 已知限制清单是最新的（见 README）
 
 **当前状态（2026-11-13）**：六层能力全部实测验收，**已具备对外发布条件**（npm 包名可用、工件校验通过）。
+
+## 8. DSH 版本升级（每次必须做）
+
+DSH 运行时升级时（如 `0.2.2-rc.1` → `0.2.2-rc.3`），**必须同步更新两处**：
+
+| 文件 | 位置 | 值 |
+|---|---|---|
+| `package.json` | `peerDependencies["@deepseek-ai/dsh"]` | 精确新版本号 |
+| `index.js` | `PEER_DSH_VERSION` 常量 | 同上 |
+
+版本不一致会触发 `incompatible-version`，面板显示"异常"横幅。
+DSH 的 CLI 版本（`dsh --version`）≠ 运行时版本——以报错消息里的版本为准。
+
+更新后跑 `check-package.mjs` 确认两处一致，再重启 DSH。
 发布动作本身需要作者的 npm / GitHub 账号，见 `RELEASE.md`。

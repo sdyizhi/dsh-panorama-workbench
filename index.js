@@ -15,7 +15,7 @@ import { computeReconciliation, DEFAULT_MIN_COVERAGE, DEFAULT_MAX_AGE_DAYS } fro
 
 const VERSION = '1.0.0'
 /** 与 package.json peerDependencies 中的 @deepseek-ai/dsh 精确一致（约束 C6）。 */
-const PEER_DSH_VERSION = '0.2.2-rc.1'
+const PEER_DSH_VERSION = '0.2.2-rc.3'
 const PHASE = 'P1'
 
 /** 参与代码版本戳的运行时文件（不含 locale/icon 等静态资源）。 */

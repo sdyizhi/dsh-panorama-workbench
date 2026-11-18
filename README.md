@@ -64,20 +64,44 @@
 
 ## 安装
 
-```bash
-# 从本地目录安装（开发/自用）
-dsh plugin --profile desktop add link:/path/to/dsh-panorama-workbench
+### 方式一：从 GitHub 安装（推荐）
 
-# 安装后【重启 DSH 桌面版】——插件的 Host 代码只在启动时加载
+```bash
+dsh plugin --profile <你的profile> add git+https://github.com/sdyizhi/dsh-panorama-workbench.git
 ```
 
-验证安装：
+> 安装后**重启 DSH 桌面版**——插件的 Host 代码只在启动时加载。
+
+### 方式二：从 tarball 安装
+
+```bash
+# 下载 tarball（GitHub Release 或自行 npm pack）
+dsh plugin --profile <你的profile> add /path/to/dsh-panorama-workbench-1.0.0.tgz
+# 重启 DSH
+```
+
+### 方式三：从 npm 安装（可选）
+
+```bash
+dsh plugin --profile <你的profile> add dsh-panorama-workbench
+# 重启 DSH
+```
+
+### 方式四：本地开发安装
+
+```bash
+dsh plugin --profile <你的profile> add link:/path/to/dsh-panorama-workbench
+# 重启 DSH
+```
+
+### 验证安装
 
 ```bash
 # 1) 组合里应出现 panorama-workbench 行
-dsh --profile desktop --dump-config | grep -A3 panorama-workbench
+dsh --profile <你的profile> --dump-config | grep -A3 panorama-workbench
 
 # 2) 侧边栏出现"全景工作台"入口；点开后面板诊断卡显示各服务状态
+#    全部绿色 + "代码戳: 运行中=磁盘" = 安装成功
 ```
 
 > ⚠️ **已知限制**：桌面壳的插件热更新通道（`/plugins/events` SSE）不可用，
